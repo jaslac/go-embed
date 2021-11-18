@@ -22,11 +22,10 @@ func main() {
 		}
 	}
 
-	_ = ioutil.WriteFile("embed.go", out.Bytes(), 0777)
+	_ = ioutil.WriteFile("embed.go", out.Bytes(), 0666)
 }
 
-// convert file as:
-// var _xxxDll = []byte("\x4d\x5a...")
+// convert file as: var _xxxDll = []byte("\x4d\x5a...")
 func convert(file string) string {
 	var buf bytes.Buffer
 	filename := filepath.Base(file)
@@ -35,17 +34,13 @@ func convert(file string) string {
 	if strings.HasPrefix(bn, ".") {
 		return ""
 	}
-	if strings.HasSuffix(bn, ".") {
-		bn = strings.TrimRight(bn, ".")
-	}
-
+	bn = strings.TrimRight("_"+bn, ".")
 	n := strings.Index(bn, ".")
 	if n != -1 {
 		ext := filepath.Ext(bn)
-		ext = strings.Trim(ext, ".")
+		ext = strings.TrimLeft(ext, ".")
 		bn = bn[:n] + strings.Title(ext)
 	}
-	bn = "_" + bn
 
 	_, _ = fmt.Fprintf(&buf, "// %s from %s\nvar %s = []byte(\"", bn, filename, bn)
 	data, err := ioutil.ReadFile(file)
