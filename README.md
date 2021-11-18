@@ -1,3 +1,9 @@
+### embed
+
+This package converts any file into Go source code(bytes) without any package
+simple and clean
+
+
 ### Installation
 
 To install the command line program, use the following:
