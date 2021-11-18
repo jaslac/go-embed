@@ -1,6 +1,6 @@
 ### embed
 
-Converts any file into Go source code(bytes) without any package
+Converts any file into Go source code(bytes) without any package, simple and clean
 
 
 ### Installation
