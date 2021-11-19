@@ -3,6 +3,13 @@
 Converts any file into Go source code(bytes) without any package, simple and clean
 
 
+### Installation
+
+install the command line program:
+
+    go get github.com/jaslac/go-embed
+
+
 ### Usage
 
 Convert main.go README.md to embed.go
